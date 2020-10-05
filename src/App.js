@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useContext } from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import { LyricsContext } from './context/LyricsContext';
+import Form from './components/Form';
+import Lyrics from './components/Lyrics';
+import ArtistInfo from './components/ArtistInfo';
+
+const App = () => {
+    const { lyricsData } = useContext(LyricsContext);
+
+    return (
+        <>
+            <Form />
+
+            {Object.keys(lyricsData).length !== 0 && (
+                <div className="container mt-5">
+                    <div className="row">
+                        <div className="col-md-6">
+                            <Lyrics />
+                        </div>
+                        <div className="col-md-6">
+                            <ArtistInfo />
+                        </div>
+                    </div>
+                </div>
+            )}
+        </>
+    );
+};
 
 export default App;
